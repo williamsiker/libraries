@@ -23,7 +23,7 @@
 #
 ###########################################################################
 
-prefix="/home/iker/build_curl"
+prefix="/home/iker/curl_build"
 # Used in ${exec_prefix}/lib
 # shellcheck disable=SC2034
 exec_prefix=${prefix}
@@ -171,7 +171,7 @@ while test "$#" -gt 0; do
 
   --static-libs)
     if test "Xyes" != "Xno" ; then
-      echo "${exec_prefix}/lib/libcurl.a" -L/home/iker/build/lib -lssl -lcrypto -lz
+      echo "${exec_prefix}/lib/libcurl.a" -L/home/iker/build/lib -L/home/iker/zlib_build/lib -L/home/iker/openssl_build/lib -lssl -lcrypto -lz
     else
       echo 'curl was built with static libraries disabled' >&2
       exit 1
@@ -179,7 +179,7 @@ while test "$#" -gt 0; do
     ;;
 
   --configure)
-    echo " '--host' 'aarch64-linux-android' '--with-pic' '--disable-shared' '--prefix=/home/iker/build_curl' '--with-openssl=/home/iker/build' 'host_alias=aarch64-linux-android' 'CC=/home/iker/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang'"
+    echo " '--host=aarch64-linux-android' '--with-pic' '--disable-shared' '--with-ssl=/home/iker/openssl_build' '--with-zlib=/home/iker/zlib_build' '--prefix=/home/iker/curl_build' 'host_alias=aarch64-linux-android' 'CC=/home/iker/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang' 'LDFLAGS=-L/home/iker/build/lib' 'CPPFLAGS=-I/home/iker/build/include'"
     ;;
 
   *)
