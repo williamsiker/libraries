@@ -1324,6 +1324,19 @@ Mat<eT>::steal_mem_col(Mat<eT>& x, const uword max_n_rows)
 
 
 
+template<typename eT>
+template<typename eT2>
+arma_inline
+bool
+Mat<eT>::is_alias(const Mat<eT2>& X) const
+  {
+  arma_debug_sigprint();
+  
+  return (is_same_type<eT,eT2>::yes) && (void_ptr(this) == void_ptr(&X));
+  }
+
+
+
 //! construct a matrix from a given auxiliary array of eTs.
 //! if copy_aux_mem is true, new memory is allocated and the array is copied.
 //! if copy_aux_mem is false, the auxiliary array is used directly (without allocating memory and copying).
@@ -9552,11 +9565,11 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const fill::fill_class<fill_ty
   {
   arma_debug_sigprint_this(this);
   
-  if(is_same_type<fill_type, fill::fill_zeros>::yes)  { (*this).zeros(); }
-  if(is_same_type<fill_type, fill::fill_ones >::yes)  { (*this).ones();  }
-  if(is_same_type<fill_type, fill::fill_eye  >::yes)  { (*this).eye();   }
-  if(is_same_type<fill_type, fill::fill_randu>::yes)  { (*this).randu(); }
-  if(is_same_type<fill_type, fill::fill_randn>::yes)  { (*this).randn(); }
+  if(is_same_type<fill_type, fill::fill_zeros>::yes)  {  (*this).zeros(); }
+  if(is_same_type<fill_type, fill::fill_ones >::yes)  {  (*this).ones();  }
+  if(is_same_type<fill_type, fill::fill_eye  >::yes)  { Mat<eT>::eye();   }
+  if(is_same_type<fill_type, fill::fill_randu>::yes)  { Mat<eT>::randu(); }
+  if(is_same_type<fill_type, fill::fill_randn>::yes)  { Mat<eT>::randn(); }
   }
 
 

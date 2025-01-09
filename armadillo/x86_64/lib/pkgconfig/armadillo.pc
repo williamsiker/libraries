@@ -1,5 +1,5 @@
-libdir=/home/ionicelk/arma/lib
-includedir=/home/ionicelk/arma/include
+libdir=D:/Libraries/old/code/arma/x86_64/lib
+includedir=D:/Libraries/old/code/arma/x86_64/include
 
 Name: armadillo
 Description: C++ library for linear algebra and scientific computing with MATLAB-like syntax
